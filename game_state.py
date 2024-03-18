@@ -29,7 +29,12 @@ class GameState:
         self.food = food
 
 
-    def next_head(self, direction):
+    def set_initial_position(self):
+        self.snake = INITIAL_SNAKE[:]
+        self.direction = INITIAL_DIRECTION
+        self.set_random_food_position()
+
+    def next_head_position(self, direction):
         pos = self.snake[-1]
         match direction:
             case Direction.UP:
@@ -41,6 +46,7 @@ class GameState:
             case Direction.LEFT:
                 return Position((pos.x - 1) % self.field_size, pos.y)
 
+
     def set_random_food_position(self):
         self.food = Position(
             randint(0, self.field_size - 1),
@@ -50,17 +56,19 @@ class GameState:
         if self.food in self.snake:
             self.set_random_food_position()
 
-    def set_initial_position(self):
-        self.snake = INITIAL_SNAKE[:]
-        self.direction = INITIAL_DIRECTION
-        self.set_random_food_position()
 
     def can_turn(self, direction):
-        new_head = self.next_head(direction)
+        new_head = self.next_head_position(direction)
         return new_head != self.snake[-2]
 
+
+    def turn(self, direction):
+        if self.can_turn(direction):
+            self.direction = direction
+
+
     def step(self):
-        new_head = self.next_head(self.direction)
+        new_head = self.next_head_position(self.direction)
 
         collision = new_head in self.snake
         if collision:
