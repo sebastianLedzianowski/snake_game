@@ -71,6 +71,11 @@ Gra jest w trakcie rozwoju. Planowane są następujące funkcje:
 
 - [Sebastian Ledzianowski](https://github.com/sebastianLedzianowski)
 
+
+## ⚖️ Licencja
+
+Ten projekt jest licencjonowany na licencji MIT - zobacz plik [LICENSE](LICENSE), aby uzyskać szczegółowe informacje.
+
 ## 💖 Podziękowania
 
 Chciałbym serdecznie podziękować wszystkim, którzy w jakikolwiek sposób przyczynili się do powstania tej gry.
@@ -82,7 +87,3 @@ Specjalne podziękowania dla:
 - Moim przyjaciołom i rodzinie za ich wsparcie i motywację do ciągłego rozwijania moich umiejętności programistycznych.
 
 Ten projekt nie byłby możliwy bez wsparcia i zachęty od tak wielu niesamowitych ludzi. Dziękuję!
-
-## ⚖️ Licencja
-
-Ten projekt jest licencjonowany na licencji MIT - zobacz plik [LICENSE](LICENSE), aby uzyskać szczegółowe informacje.
