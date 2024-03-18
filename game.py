@@ -1,6 +1,5 @@
 import pygame
 
-from position import Position
 from direction import Direction
 from game_state import GameState
 
@@ -16,16 +15,6 @@ CUBES_NUM = 20
 WIDTH = CUBES_NUM * CUBE_SIZE
 screen = pygame.display.set_mode((WIDTH, WIDTH))
 
-screen.fill(WHITE)
-pygame.display.update()
-
-state = GameState(
-    snake=None,
-    direction=None,
-    food=None,
-    field_size=CUBES_NUM
-)
-state.set_initial_position()
 
 def draw_snake_part(pos):
     position = (pos.x * CUBE_SIZE,
@@ -58,23 +47,36 @@ def draw(snake, food):
     pygame.display.update()
 
 
+state = GameState(
+    snake=None,
+    direction=None,
+    food=None,
+    field_size=CUBES_NUM
+)
+state.set_initial_position()
+
 clock = pygame.time.Clock()
 while True:
     clock.tick(10)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            pygame.quit()
             quit()
 
-        match pygame.KEYDOWN:
-            case pygame.K_LEFT:
-                state.direction = Direction.LEFT
-            case pygame.K_RIGHT:
-                state.direction = Direction.RIGHT
-            case pygame.K_UP:
-                state.direction = Direction.UP
-            case pygame.K_DOWN:
-                state.direction = Direction.DOWN
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_LEFT:
+                state.turn(Direction.LEFT)
+
+            elif event.key == pygame.K_RIGHT:
+                state.turn(Direction.RIGHT)
+
+            elif event.key == pygame.K_UP:
+                state.turn(Direction.UP)
+
+            elif event.key == pygame.K_DOWN:
+                state.turn(Direction.DOWN)
 
 
     state.step()
