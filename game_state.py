@@ -17,6 +17,8 @@ class GameState:
                  direction=INITIAL_DIRECTION,
                  food=None,
                  field_size=20):
+        self.field_size = field_size
+        self.direction = direction
 
         if snake is None:
             snake = INITIAL_SNAKE
@@ -24,11 +26,8 @@ class GameState:
 
         if food is None:
             self.set_random_food_position()
-        else:
-            self.food = food
+        self.food = food
 
-        self.field_size = field_size
-        self.direction = direction
 
     def next_head(self, direction):
         pos = self.snake[-1]
