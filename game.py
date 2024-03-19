@@ -61,13 +61,15 @@ def show_game_over_screen(score):
     test_rect_score = text_score.get_rect(center=(WIDTH / 2, WIDTH / 2))
 
     font_control = pygame.font.SysFont("arial", 15)
-    text_control = font_control.render("(ENTER) to Return "
-                                       "(ESCAPE) to Quit", True, WHITE)
-    text_rect_control = text_control.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2))
+    text_control_enter = font_control.render("(ENTER) to Return", True, WHITE)
+    text_control_escape = font_control.render("(ESCAPE) to Quit", True, WHITE)
+    text_rect_control_enter = text_control_enter.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2))
+    text_rect_control_escape = text_control_escape.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2 + 20))
 
     screen.blit(text_game_over, text_rect_game_over)
     screen.blit(text_score, test_rect_score)
-    screen.blit(text_control, text_rect_control)
+    screen.blit(text_control_enter, text_rect_control_enter)
+    screen.blit(text_control_escape, text_rect_control_escape)
 
     pygame.display.flip()
 
