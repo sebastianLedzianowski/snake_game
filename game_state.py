@@ -9,7 +9,6 @@ INITIAL_SNAKE = [
     Position(3, 2)
 ]
 INITIAL_DIRECTION = Direction.RIGHT
-INITIAL_SPEED = 10
 
 
 class GameState:
@@ -17,17 +16,14 @@ class GameState:
                  snake=None,
                  direction=INITIAL_DIRECTION,
                  food=None,
-                 field_size=20,
-                 speed=None):
+                 field_size=20):
 
         self.field_size = field_size
         self.direction = direction
         self.score = 0
         self.game_over = False
-
-        if speed is None:
-            speed = INITIAL_SPEED
-        self.speed = speed
+        self.start_game = True
+        self.speed = 10
 
         if snake is None:
             snake = INITIAL_SNAKE
@@ -86,6 +82,7 @@ class GameState:
 
         collision = new_head in self.snake
         if collision:
+            self.start_game = False
             self.game_over = True
             return
 
