@@ -37,18 +37,22 @@ def draw_snake(snake):
         else:
             body_image = pygame.image.load('static/snake_body.png')
             body_twist_image = pygame.image.load('static/snake_body_twist.png')
-            prev_dir, next_dir = snake[i + 1], snake[i - 1]
+            prev_segment, current_segment, next_segment = snake[i + 1], snake[i], snake[i - 1]
 
-            if prev_dir.x == next_dir.x or prev_dir.y == next_dir.y:
+            if prev_segment.x == next_segment.x or prev_segment.y == next_segment.y:
                 draw_snake_part(body_image, part, angle)
-            elif prev_dir.x > next_dir.x and prev_dir.y < next_dir.y:
-                angle = Direction.RIGHT
-            elif prev_dir.x < next_dir.x and prev_dir.y < next_dir.y:
-                angle = Direction.UP
-            elif prev_dir.x > next_dir.x and prev_dir.y > next_dir.y:
-                angle = Direction.DOWN
-            elif prev_dir.x < next_dir.x and prev_dir.y > next_dir.y:
-                angle = Direction.LEFT
+
+            elif prev_segment.x < current_segment.x and next_segment.y < current_segment.y or \
+                    prev_segment.y < current_segment.y and next_segment.x < current_segment.x:
+                angle = 180
+            elif prev_segment.x > current_segment.x and next_segment.y > current_segment.y or \
+                    prev_segment.y > current_segment.y and next_segment.x > current_segment.x:
+                angle = 0
+            elif prev_segment.y < current_segment.y and next_segment.x > current_segment.x or \
+                    prev_segment.x < current_segment.x and next_segment.y > current_segment.y:
+                angle = 90
+            else:
+                angle = -90
             draw_snake_part(body_twist_image, part, angle)
 
 
