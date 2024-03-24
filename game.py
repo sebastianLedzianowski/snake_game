@@ -36,4 +36,4 @@ while True:
     else:
         state.step()
         screen.blit(background, (0, 0))
-        draw(state.snake, state.food, player_name, state.score)
+        draw(state.snake, state.food, state.score)

@@ -2,7 +2,7 @@ import pygame
 import random
 
 from direction import Direction
-from game_variables import screen, CUBE_SIZE, BLACK, WHITE, state, WIDTH
+from game_variables import screen, CUBE_SIZE, WHITE, state, WIDTH, BROWN_DART
 
 
 def draw_snake_part(image, pos, angle):
@@ -16,11 +16,11 @@ def draw_snake_part(image, pos, angle):
 
 def draw_snake(snake):
     for i, part in enumerate(snake):
-        angle = 0
         if i == len(snake) - 1:
             head_image = pygame.image.load('static/snake_head.png')
             angle = state.direction
             draw_snake_part(head_image, part, angle)
+
         elif i == 0:
             tail_image = pygame.image.load('static/snake_tail.png')
             prev_part = snake[i + 1]
@@ -33,9 +33,23 @@ def draw_snake(snake):
             elif prev_part.y > part.y:
                 angle = Direction.DOWN
             draw_snake_part(tail_image, part, angle)
+
         else:
             body_image = pygame.image.load('static/snake_body.png')
-            draw_snake_part(body_image, part, angle)
+            body_twist_image = pygame.image.load('static/snake_body_twist.png')
+            prev_dir, next_dir = snake[i + 1], snake[i - 1]
+
+            if prev_dir.x == next_dir.x or prev_dir.y == next_dir.y:
+                draw_snake_part(body_image, part, angle)
+            elif prev_dir.x > next_dir.x and prev_dir.y < next_dir.y:
+                angle = Direction.RIGHT
+            elif prev_dir.x < next_dir.x and prev_dir.y < next_dir.y:
+                angle = Direction.UP
+            elif prev_dir.x > next_dir.x and prev_dir.y > next_dir.y:
+                angle = Direction.DOWN
+            elif prev_dir.x < next_dir.x and prev_dir.y > next_dir.y:
+                angle = Direction.LEFT
+            draw_snake_part(body_twist_image, part, angle)
 
 
 def draw_food(pos):
@@ -47,10 +61,10 @@ def draw_food(pos):
     screen.blit(food_image, position)
 
 
-def draw_score(player_name, score):
-    font = pygame.font.SysFont("arial", CUBE_SIZE)
-    text = font.render(f"Hi {player_name} this is your score: {score}", True, BLACK)
-    screen.blit(text, (10, 10))
+def draw_score(score):
+    font = pygame.font.SysFont("Press Start 2P", 15)
+    text = font.render(f"Yours score: {score}", True, BROWN_DART)
+    screen.blit(text, (WIDTH / 3 + 5, 10))
 
 
 def fill_bg():
@@ -70,8 +84,8 @@ def fill_bg():
 
     return background
 
-def draw(snake, food, player_name, score):
+def draw(snake, food, score):
     draw_snake(snake)
     draw_food(food)
-    draw_score(player_name, score)
+    draw_score(score)
     pygame.display.update()

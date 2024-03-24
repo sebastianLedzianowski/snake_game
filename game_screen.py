@@ -1,19 +1,16 @@
 import pygame
 from pygame.examples.moveit import HEIGHT
 
-from game_variables import screen, WHITE, WIDTH, BLACK, RED, state, BLUE, GRAY
+from game_variables import screen, WIDTH, BLACK, RED, state, BROWN_DART, GREEN_2_DART
 
 
 def select_name():
-    screen.fill(WHITE)
+    font = pygame.font.SysFont("Press Start 2P", 20)
 
-    font_title = pygame.font.SysFont("arial", 45)
-    font = pygame.font.SysFont("arial", 35)
+    input_box = pygame.Rect(WIDTH / 2 - 110, WIDTH / 2 + 25, 200, 30)
 
-    input_box = pygame.Rect(WIDTH / 2 - 100, WIDTH / 2, 200, 45)
-
-    color_inactive = pygame.Color(GRAY)
-    color_active = pygame.Color(BLUE)
+    color_inactive = pygame.Color(BROWN_DART)
+    color_active = pygame.Color(GREEN_2_DART)
     color = color_inactive
 
     active = False
@@ -42,17 +39,17 @@ def select_name():
                     else:
                         text += event.unicode
 
-        screen.fill(WHITE)
+        background = pygame.image.load('static/snake_screen.png')
+        background = pygame.transform.scale(background, (WIDTH, WIDTH))
+        screen.blit(background, (0, 0))
 
-        title = font_title.render("Snake Game", True, BLACK)
-        txt_player_name = font.render("Select Your Name:", True, BLACK)
+        txt_player_name = font.render("Your Name:", True, GREEN_2_DART)
         txt_surface = font.render(text, True, color)
 
         width = max(200, txt_surface.get_width() + 10)
         input_box.w = width
 
-        screen.blit(title, (WIDTH / 2 - title.get_width() / 2, HEIGHT / 6))
-        screen.blit(txt_player_name, (input_box.x - 45, input_box.y - 45))
+        screen.blit(txt_player_name, (input_box.x + 5, input_box.y - 25))
         screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
 
         pygame.draw.rect(screen, color, input_box, 2)
@@ -61,12 +58,15 @@ def select_name():
 
 
 def select_speed_game():
-    screen.fill(WHITE)
-    font_title = pygame.font.SysFont("arial", 45)
-    font_options = pygame.font.SysFont("arial", 35)
+    background = pygame.image.load('static/dart_screen.png')
+    background = pygame.transform.scale(background, (WIDTH, WIDTH))
+    screen.blit(background, (0, 0))
 
-    title = font_title.render("Game Level:", True, BLACK)
-    screen.blit(title, (WIDTH / 2 - title.get_width() / 2, HEIGHT / 6))
+    font_title = pygame.font.SysFont("Press Start 2P", 30)
+    font_options = pygame.font.SysFont("Press Start 2P", 20)
+
+    title = font_title.render("Game Level:", True, BROWN_DART)
+    screen.blit(title, (WIDTH / 2 - title.get_width() / 2, HEIGHT / 4))
 
     easy = font_options.render("Easy - Press 1", True, BLACK)
     medium = font_options.render("Medium - Press 2", True, BLACK)
@@ -86,13 +86,13 @@ def select_speed_game():
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
-                    state.speed = 10
+                    state.speed = 1
                     waiting = False
                 elif event.key == pygame.K_2:
-                    state.speed = 15
+                    state.speed = 10
                     waiting = False
                 elif event.key == pygame.K_3:
-                    state.speed = 20
+                    state.speed = 15
                     waiting = False
                 elif event.key == pygame.K_ESCAPE:
                     pygame.quit()
@@ -103,23 +103,25 @@ def select_speed_game():
 
 
 def game_over_screen(score, player_name):
-    screen.fill(BLACK)
+    background = pygame.image.load('static/game_over_screen.png')
+    background = pygame.transform.scale(background, (WIDTH, WIDTH))
+    screen.blit(background, (0, 0))
 
-    font_game_over = pygame.font.SysFont("arial", 50)
+    font_game_over = pygame.font.SysFont("Press Start 2P", 35)
     text_game_over = font_game_over.render("Game Over", True, RED)
-    text_rect_game_over = text_game_over.get_rect(center=(WIDTH / 2, WIDTH / 3))
+    text_rect_game_over = text_game_over.get_rect(center=(WIDTH / 2, WIDTH / 4))
 
-    font_score = pygame.font.SysFont("arial", 35)
-    text_score = font_score.render(f"{player_name} this your score: {score}", True, WHITE)
-    test_rect_score = text_score.get_rect(center=(WIDTH / 2, WIDTH / 2))
+    font_score = pygame.font.SysFont("Press Start 2P", 20)
+    text_score = font_score.render(f"{player_name} this your score: {score}", True, BLACK)
+    test_rect_score = text_score.get_rect(center=(WIDTH / 2, WIDTH / 3 + 40))
 
-    font_control = pygame.font.SysFont("arial", 20)
-    text_control_enter = font_control.render("(ENTER) to Return", True, WHITE)
-    text_control_space = font_control.render("(SPACE) to Restart", True, WHITE)
-    text_control_escape = font_control.render("(ESCAPE) to Quit", True, WHITE)
-    text_rect_control_enter = text_control_enter.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2))
-    text_rect_control_space = text_control_space.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2 + 25))
-    text_rect_control_escape = text_control_escape.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2 + 50))
+    font_control = pygame.font.SysFont("Press Start 2P", 15)
+    text_control_enter = font_control.render("(ENTER) to Return", True, BROWN_DART)
+    text_control_space = font_control.render("(SPACE) to Restart", True, BROWN_DART)
+    text_control_escape = font_control.render("(ESCAPE) to Quit", True, BROWN_DART)
+    text_rect_control_enter = text_control_enter.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2 - 40))
+    text_rect_control_space = text_control_space.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2 - 20))
+    text_rect_control_escape = text_control_escape.get_rect(center=(WIDTH / 2, (WIDTH / 3) * 2))
 
     waiting = True
     while waiting:
