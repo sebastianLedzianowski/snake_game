@@ -1,28 +1,30 @@
 import pygame
 
-from game_variables import screen, CUBE_SIZE, FONT_SIZE, BLACK, WHITE
+from game_variables import screen, CUBE_SIZE, FONT_SIZE, BLACK, WHITE, state
 
 
-def draw_snake_part(image, pos):
+def draw_snake_part(image, pos, angle):
     image = pygame.transform.scale(image, (CUBE_SIZE, CUBE_SIZE))
+    image = pygame.transform.rotate(image, angle)
 
-    position = (pos.x * CUBE_SIZE,
-                pos.y * CUBE_SIZE)
+    position = (pos.x * CUBE_SIZE, pos.y * CUBE_SIZE)
 
     screen.blit(image, position)
 
 
 def draw_snake(snake):
     for i, part in enumerate(snake):
+        angle = 0
         if i == len(snake) - 1:
             head_image = pygame.image.load('static/snake_head.png')
-            draw_snake_part(head_image, part)
+            angle = state.direction
+            draw_snake_part(head_image, part, angle)
         elif i == 0:
             tail_image = pygame.image.load('static/snake_tail.png')
-            draw_snake_part(tail_image, part)
+            draw_snake_part(tail_image, part, angle)
         else:
             body_image = pygame.image.load('static/snake_body.png')
-            draw_snake_part(body_image, part)
+            draw_snake_part(body_image, part, angle)
 
 
 def draw_food(pos):

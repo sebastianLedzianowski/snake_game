@@ -18,6 +18,7 @@ CUBES_NUM = 20
 WIDTH = CUBES_NUM * CUBE_SIZE
 screen = pygame.display.set_mode((WIDTH, WIDTH))
 
+
 state = GameState(
     snake=None,
     direction=None,

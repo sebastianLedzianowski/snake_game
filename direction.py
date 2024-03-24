@@ -1,5 +1,5 @@
 class Direction:
-    UP = 1
-    DOWN = 2
-    LEFT = 3
-    RIGHT = 4
+    UP = 90
+    DOWN = -90
+    LEFT = 180
+    RIGHT = 0
