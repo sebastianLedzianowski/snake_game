@@ -110,7 +110,7 @@ def game_over_screen(score, player_name):
     text_rect_game_over = text_game_over.get_rect(center=(WIDTH / 2, WIDTH / 3))
 
     font_score = pygame.font.SysFont("arial", 35)
-    text_score = font_score.render(f"{player_name} this yours score: {score}", True, WHITE)
+    text_score = font_score.render(f"{player_name} this your score: {score}", True, WHITE)
     test_rect_score = text_score.get_rect(center=(WIDTH / 2, WIDTH / 2))
 
     font_control = pygame.font.SysFont("arial", 20)

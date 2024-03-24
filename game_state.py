@@ -87,7 +87,6 @@ class GameState:
             return
 
         self.snake.append(new_head)
-
         if new_head == self.food:
             self.set_random_food_position()
             self.update_score()

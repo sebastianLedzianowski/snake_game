@@ -1,26 +1,37 @@
 import pygame
 
-from game_variables import screen, CUBE_SIZE, FONT_SIZE, GREEN, BLUE, BLACK, WHITE
+from game_variables import screen, CUBE_SIZE, FONT_SIZE, BLACK, WHITE
 
 
-def draw_snake_part(pos):
+def draw_snake_part(image, pos):
+    image = pygame.transform.scale(image, (CUBE_SIZE, CUBE_SIZE))
+
     position = (pos.x * CUBE_SIZE,
-                pos.y * CUBE_SIZE,
-                CUBE_SIZE,
-                CUBE_SIZE)
-    pygame.draw.rect(screen, GREEN, position)
+                pos.y * CUBE_SIZE)
+
+    screen.blit(image, position)
 
 
 def draw_snake(snake):
-    for part in snake:
-        draw_snake_part(part)
+    for i, part in enumerate(snake):
+        if i == len(snake) - 1:
+            head_image = pygame.image.load('static/snake_head.png')
+            draw_snake_part(head_image, part)
+        elif i == 0:
+            tail_image = pygame.image.load('static/snake_tail.png')
+            draw_snake_part(tail_image, part)
+        else:
+            body_image = pygame.image.load('static/snake_body.png')
+            draw_snake_part(body_image, part)
 
 
 def draw_food(pos):
-    radius = float(CUBE_SIZE) / 2
-    position = (pos.x * CUBE_SIZE + radius,
-                pos.y * CUBE_SIZE + radius)
-    pygame.draw.circle(screen, BLUE, position, radius)
+    food_image = pygame.image.load('static/food.png')
+    food_image = pygame.transform.scale(food_image, (CUBE_SIZE, CUBE_SIZE))
+
+    position = (pos.x * CUBE_SIZE,
+                pos.y * CUBE_SIZE)
+    screen.blit(food_image, position)
 
 
 def draw_score(player_name, score):
