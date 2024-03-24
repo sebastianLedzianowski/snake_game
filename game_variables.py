@@ -11,7 +11,6 @@ RED = (255, 0, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-FONT_SIZE = 20
 
 CUBE_SIZE = 25
 CUBES_NUM = 20

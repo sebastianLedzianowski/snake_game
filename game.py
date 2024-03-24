@@ -1,13 +1,14 @@
 import pygame
 
 from direction import Direction
-from game_draw import draw
+from game_draw import draw, fill_bg
 from game_screen import game_over_screen, select_name, select_speed_game
-from game_variables import state
+from game_variables import state, screen
 
 state.set_initial_position()
 
 clock = pygame.time.Clock()
+background = fill_bg()
 
 while True:
     clock.tick(state.speed)
@@ -34,4 +35,5 @@ while True:
         game_over_screen(state.score, player_name)
     else:
         state.step()
+        screen.blit(background, (0, 0))
         draw(state.snake, state.food, player_name, state.score)
