@@ -44,15 +44,15 @@ def draw_snake(snake):
 
             if (prev_segment.x < current_segment.x and next_segment.y > current_segment.y) or \
                     (prev_segment.y > current_segment.y and next_segment.x < current_segment.x):
-                angle = 270
+                angle = Direction.DOWN
             elif (prev_segment.x > current_segment.x and next_segment.y < current_segment.y) or \
-             (prev_segment.y < current_segment.y and next_segment.x > current_segment.x):
-                angle = 90
+                    (prev_segment.y < current_segment.y and next_segment.x > current_segment.x):
+                angle = Direction.UP
             elif (prev_segment.y < current_segment.y and next_segment.x < current_segment.x) or \
-             (prev_segment.x < current_segment.x and next_segment.y < current_segment.y):
-                angle = 180
+                    (prev_segment.x < current_segment.x and next_segment.y < current_segment.y):
+                angle = Direction.LEFT
             else:
-                angle = 0
+                angle = Direction.RIGHT
             draw_snake_part(body_twist_image, part, angle)
 
 
@@ -87,6 +87,7 @@ def fill_bg():
             background.blit(dart, (col * CUBE_SIZE, row * CUBE_SIZE))
 
     return background
+
 
 def draw(snake, food, score):
     draw_snake(snake)
