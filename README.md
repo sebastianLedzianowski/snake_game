@@ -52,17 +52,21 @@ python game.py
 ## ✨ Funkcje gry
 
 - Poruszanie się węża w czterech kierunkach
+- Dodanie grafiki poruszajacego sie węża.
+- Dodanie grafiki tla planszy oraz pokarmu.
 - Zjadanie jedzenia powoduje wydłużenie węża
 - Gra kończy się, gdy wąż uderzy w samego siebie
-- Po każdym zjedzonym jedzeniu, losowo pojawia się nowe jedzenie na planszy
+- Po każdym zjedzonym pokarmie, losowo pojawia się nowe pokarm na planszy
+- Sumowanie zdobytych punktow po zjedzeniu pokarmu.
+- Poziomy trudności
+- Ekran startowy i ekran końca gry
+- Tworzenie menu opcji
 
 ## 📈 Rozwój gry
 
 Gra jest w trakcie rozwoju. Planowane są następujące funkcje:
-- Ekran startowy i ekran końca gry
-- Tworzenie menu opcji
+
 - Tabele wyników
-- Poziomy trudności
 - Dodanie bonusów i przeszkód
 - Implementacja pauzy w grze
 - Wprowadzenie różnych trybów gry
