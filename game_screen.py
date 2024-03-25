@@ -1,11 +1,12 @@
 import pygame
 from pygame.examples.moveit import HEIGHT
 
-from game_variables import screen, WIDTH, BLACK, RED, state, BROWN_DART, GREEN_2_DART
+from game_variables import screen, WIDTH, BLACK, RED, state, BROWN_DART, GREEN_2_DART, WHITE
 
 
 def select_name():
     font = pygame.font.SysFont("Press Start 2P", 20)
+    font_author = pygame.font.SysFont("Press Start 2P", 10)
 
     input_box = pygame.Rect(WIDTH / 2 - 110, WIDTH / 2 + 25, 200, 30)
 
@@ -44,6 +45,8 @@ def select_name():
         screen.blit(background, (0, 0))
 
         txt_player_name = font.render("Your Name:", True, GREEN_2_DART)
+        txt_author_game = font_author.render("Created by: Sebastian Ledzianowski", True, WHITE)
+
         txt_surface = font.render(text, True, color)
 
         width = max(200, txt_surface.get_width() + 10)
@@ -51,6 +54,7 @@ def select_name():
 
         screen.blit(txt_player_name, (input_box.x + 5, input_box.y - 25))
         screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
+        screen.blit(txt_author_game, (input_box.x - 170, input_box.y + 250))
 
         pygame.draw.rect(screen, color, input_box, 2)
 
@@ -86,7 +90,7 @@ def select_speed_game():
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
-                    state.speed = 1
+                    state.speed = 5
                     waiting = False
                 elif event.key == pygame.K_2:
                     state.speed = 10
