@@ -85,7 +85,7 @@ Ten projekt jest licencjonowany na licencji MIT - zobacz plik [LICENSE](LICENSE)
 Chciałbym serdecznie podziękować wszystkim, którzy w jakikolwiek sposób przyczynili się do powstania tej gry.
 
 Specjalne podziękowania dla:
-- Marcina Moskały, autora książki ["Python od podstaw. Zacznij swoją przygodę z programowaniem"](https://lubimyczytac.pl/ksiazka/5032864/python-od-podstaw-zacznij-swoja-przygode-z-programowaniem), za dostarczenie solidnych fundamentów i inspiracji do nauki programowania i tworzenia gier w Pythonie.
+- Marcina Moskały, autora książki ["Python od podstaw. Zacznij swoją przygodę z programowaniem"](https://lubimyczytac.pl/ksiazka/5032864/python-od-podstaw-zacznij-swoja-przygode-z-programowaniem), za dostarczenie solidnych fundamentów i inspiracji do nauki programowania i tworzenia gier w Pythonie [Kod gry](https://github.com/MarcinMoskala/snake.git).
 - Grafika do gry zapożyczona z [Grafika do gry](https://opengameart.org/content/snake-graphics).
 - Społeczności Pygame za rozwijanie i utrzymanie tak potężnej biblioteki, która umożliwia łatwe tworzenie gier w Pythonie.
 - Każdej osobie z forum `r/pygame` na Reddit i użytkownikom Stack Overflow za ich bezcenne porady i wskazówki, które pomogły mi przezwyciężyć wiele trudności.
